@@ -60,6 +60,17 @@ app.get('/weather', (req, res) => {
     })
 })
 
+app.get('/place', (req, res) => {
+    geocode(req.query.address, (error, stuff) => {
+        if (error) {
+            return res.send({ error })
+        }
+
+        console.log(stuff)
+        res.send(stuff)
+    })
+})
+
 app.get('/help/*', (req, res) => {
     res.render('error', {
         title: 'Help - 404',
